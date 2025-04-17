@@ -1,30 +1,53 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import GreeterComponent from './GreeterComponent.vue'
+
+const customStyle = {
+  backgroundColor: '#2196F3',
+  padding: '12px 24px',
+  fontSize: '16px'
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="test-container">
+    <h2>Greeter Component Test</h2>
+    
+    <div class="test-section">
+      <h3>Default Style</h3>
+      <GreeterComponent message="Hello from default style!" />
+    </div>
+
+    <div class="test-section">
+      <h3>Custom Style</h3>
+      <GreeterComponent 
+        message="Hello from custom style!" 
+        :buttonStyle="customStyle" 
+      />
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.test-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.test-section {
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+h2 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  color: #666;
+  margin-bottom: 1rem;
 }
 </style>
