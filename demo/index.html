@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greeter Component Demo</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    #demo-container { margin-top: 2rem; }
+    .custom-btn { background: #4caf50; color: white; border: none; padding: 1em 2em; border-radius: 5px; font-size: 1.2em; }
+  </style>
+</head>
+<body>
+  <h1>Greeter Component Demo</h1>
+  <div style="display: flex; gap: 3rem;">
+    <!-- Default Style Demo -->
+    <div>
+      <h2>Default Style</h2>
+      <label for="message-input-default">Message:</label>
+      <input id="message-input-default" type="text" value="Hello from default!" />
+      <button id="mount-btn-default">Mount Greeter (Default)</button>
+      <button id="unmount-btn-default">Unmount</button>
+      <div id="demo-container-default" style="margin-top:1rem;"></div>
+    </div>
+    <!-- Custom Style Demo -->
+    <div>
+      <h2>Custom Style</h2>
+      <label for="message-input-custom">Message:</label>
+      <input id="message-input-custom" type="text" value="Hello from custom!" />
+      <button id="mount-btn-custom">Mount Greeter (Custom)</button>
+      <button id="unmount-btn-custom">Unmount</button>
+      <div id="demo-container-custom" style="margin-top:1rem;"></div>
+    </div>
+  </div>
+  <script src="/dist/greeter.iife.js"></script>
+  <script>
+    // Default style demo
+    let mountedDefault = false;
+    let mountNodeDefault = document.getElementById('demo-container-default');
+    function mountGreeterDefault() {
+      if (mountedDefault) return;
+      const message = document.getElementById('message-input-default').value;
+      window.Greeter.init('#demo-container-default', { message });
+      mountedDefault = true;
+    }
+    function unmountGreeterDefault() {
+      if (!mountedDefault) return;
+      mountNodeDefault.innerHTML = '';
+      mountedDefault = false;
+    }
+    document.getElementById('mount-btn-default').onclick = mountGreeterDefault;
+    document.getElementById('unmount-btn-default').onclick = unmountGreeterDefault;
+
+    // Custom style demo
+    let mountedCustom = false;
+    let mountNodeCustom = document.getElementById('demo-container-custom');
+    function mountGreeterCustom() {
+      if (mountedCustom) return;
+      const message = document.getElementById('message-input-custom').value;
+      window.Greeter.init('#demo-container-custom', {
+        message,
+        buttonStyle: {
+          background: '#ff9800',
+          color: '#fff',
+          border: '2px solid #ff9800',
+          borderRadius: '8px',
+          fontSize: '1.2em',
+          padding: '1em 2em',
+        }
+      });
+      mountedCustom = true;
+    }
+    function unmountGreeterCustom() {
+      if (!mountedCustom) return;
+      mountNodeCustom.innerHTML = '';
+      mountedCustom = false;
+    }
+    document.getElementById('mount-btn-custom').onclick = mountGreeterCustom;
+    document.getElementById('unmount-btn-custom').onclick = unmountGreeterCustom;
+  </script>
+</body>
+</html>
